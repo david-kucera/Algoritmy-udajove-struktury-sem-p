@@ -205,13 +205,13 @@ public:
 	 */
 	void read_files(ds::adt::SortedSequenceTable<std::string, Udaj>* table, const string& path) const
 	{
-		string postfix[] = {"1", "2", "3", "4", "5"};
-		int index_postfix = 0;
+		string postfix[] = {"1", "2", "3"};
 		std::fstream file;
 		file.open(path, std::ios::in);
 
 		if (file.is_open())
 		{
+			int index_postfix = 0;
 			std::vector<string> row;
 			string line, word, sort_number, code, official_title, medium_title, short_title, note;
 
@@ -238,19 +238,23 @@ public:
 				else if (row.size() == 5) note = "";
 
 				Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
-				if (table->contains(official_title))
+
+				// Do tabuliek sa ako kluc pouzije short_title
+				if (table->contains(short_title))
 				{
-					string official_title_fixed = official_title.append(postfix[index_postfix]);
-					while (table->contains(official_title_fixed))
+					// TODO does not work with duplicities
+					string short_title_fixed = short_title.append(postfix[index_postfix]);
+					while (table->contains(short_title_fixed))
 					{
 						index_postfix++;
-						official_title_fixed = official_title.append(postfix[index_postfix]);
+						short_title_fixed = short_title.append(postfix[index_postfix]);
 					}
+					table->insert(short_title_fixed, udaj);
 					index_postfix = 0;
 				}
 				else
 				{
-					table->insert(official_title, udaj);
+					table->insert(short_title, udaj);
 				}
 			}
 		}
