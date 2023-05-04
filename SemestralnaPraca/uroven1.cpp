@@ -50,7 +50,7 @@ int spusti1()
     * Trieda Input preberá súbor a obsahuje metódu read(), ktorá vracia vector<Udaj>, t.j. všetky naèítané údaje z .csv súboru.
     * Dá sa poui len s jednım súborom naraz a vıstup len do nového vectoru.
     */
-    constexpr input input;
+    constexpr Input input;
     std::vector<Udaj> udaje = input.read(s);
     std::vector<Udaj> splnujuce_predikat;
 

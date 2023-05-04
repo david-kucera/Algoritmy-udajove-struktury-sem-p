@@ -32,7 +32,7 @@ int spusti2()
     paths[2] = "obce.csv";
 
 	// Trieda Input naèíta všetky údaje do pomyselnej hierarchie Slovenska, t.j. koreò je Slovensko, jej synovia sú kraje - ich synovia okresy - a ich synovia obce.
-    constexpr input input;
+    constexpr Input input;
     input.read_files(&hierarchy, paths);
     delete[] paths;
 

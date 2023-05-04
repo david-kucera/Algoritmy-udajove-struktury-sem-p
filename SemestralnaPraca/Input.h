@@ -15,7 +15,7 @@
 
 using string = std::string;
 
-class input
+class Input
 {
 public:
 	/*
@@ -203,55 +203,62 @@ public:
 	 * Naèíta údaje zo zvoleného súboru a naèíta ich do tabulky.
 	 * Vracia tabulku naplnenu naèítanými hodnotami údajov.
 	 */
-	void read_files(ds::adt::SortedSequenceTable<std::string, Udaj>* table, std::string* paths) const
+	void read_files(ds::adt::SortedSequenceTable<std::string, Udaj>* table, const string& path) const
 	{
-		int tmp = 0;
-		for (int index_of_input_file = 0; index_of_input_file < 3; ++index_of_input_file)
+		string postfix[] = {"1", "2", "3", "4", "5"};
+		int index_postfix = 0;
+		std::fstream file;
+		file.open(path, std::ios::in);
+
+		if (file.is_open())
 		{
-			std::fstream file;
-			file.open(paths[index_of_input_file], std::ios::in);
+			std::vector<string> row;
+			string line, word, sort_number, code, official_title, medium_title, short_title, note;
 
-			// Každý súbor sa preèíta práve raz
-			if (file.is_open())
+			while (std::getline(file, line))
 			{
-				std::vector<string> row;
-				string line, word, sort_number, code, official_title, medium_title, short_title, note;
+				row.clear();
+				std::stringstream str(line);
 
-				while (std::getline(file, line))
+				// Prvy riadok odfiltujeme od zvysku udajov
+				if (line.find("sortNumber;code;officialTitle;mediumTitle;shortTitle;note") != -1)  continue;
+
+				while (std::getline(str, word, ';'))
 				{
-					row.clear();
-					std::stringstream str(line);
-
-					// Prvý riadok odfiltujem od zvyšku údajov
-					if (line.find("sortNumber;code;officialTitle;mediumTitle;shortTitle;note") != -1) continue;
-
-					while (std::getline(str, word, ';'))
-					{
-						row.push_back(word);
-					}
-					sort_number = row[0];
-					code = row[1];
-					official_title = row[2];
-					medium_title = row[3];
-					short_title = row[4];
-					if (row.size() == 6) note = row[5];
-					else if (row.size() == 5) note = "";
-
-					Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
-					if (table->contains(short_title))
-					{
-						tmp++;
-						auto short_t = short_title + std::to_string(tmp);
-						table->insert(short_t, udaj);
-					}
-					else
-					{
-						table->insert(short_title, udaj);
-					}
+					row.push_back(word);
 				}
-				file.close();
+
+				// Tu row obsahuje vsetky informacie o danej uzemnej jednotke
+				sort_number = row[0];
+				code = row[1];
+				official_title = row[2];
+				medium_title = row[3];
+				short_title = row[4];
+				if (row.size() == 6) note = row[5]; // FIX kvoli zahraniciu
+				else if (row.size() == 5) note = "";
+
+				Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
+				if (table->contains(official_title))
+				{
+					string official_title_fixed = official_title.append(postfix[index_postfix]);
+					while (table->contains(official_title_fixed))
+					{
+						index_postfix++;
+						official_title_fixed = official_title.append(postfix[index_postfix]);
+					}
+					index_postfix = 0;
+				}
+				else
+				{
+					table->insert(official_title, udaj);
+				}
 			}
 		}
+		else
+		{
+			throw std::runtime_error("Could not open input file");
+		}
+		file.close();
 	}
 };
 
