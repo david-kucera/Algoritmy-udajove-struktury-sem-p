@@ -24,6 +24,7 @@ int main()
 	paths[2] = "obce.csv";
 	constexpr Input input;
 
+	// Použitý typ tabu¾ky pre túto úroveò semestrálnej práce
 	ds::adt::SortedSequenceTable<std::string, Udaj> table;
 
 	switch (volba)
@@ -41,41 +42,38 @@ int main()
 		input.read_files(&table, paths[2]);
 		break;
 	default:
+		std::cout << "Nesprávny typ!" << std::endl;
 		return 0;
 	}
 	delete[] paths;
 
-	//string hladane;
-	//std::cout << "Zadaj h¾adaný k¾úè (short title): ";
-	//std::cin >> hladane;
+	string hladane;
+	std::cout << "Zadaj h¾adaný k¾úè (short title): ";
+	std::cin >> hladane;
 
-	//const string postfix[] = { "1", "2" };
-	//try
-	//{
-	//	table.find(hladane).print();
-	//}
-	//catch (ds::adt::structure_error)
-	//{
-	//	std::cout << "Takýto k¾úè sa nenachádza v tabu¾ke" << std::endl;
-	//}
+	try
+	{
+		table.find(hladane).print();
+	}
+	catch (ds::adt::structure_error)
+	{
+		std::cout << "Takýto k¾úè sa nenachádza v tabu¾ke" << std::endl;
+	}
 
-	////Prehladam aj vsetky mozne postfixy short_title-ov
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	string new_hladane = hladane + postfix[i];
-	//	try
-	//	{
-	//		table.find(new_hladane).print();
-	//	}
-	//	catch (ds::adt::structure_error)
-	//	{
-	//		std::cout << "Viac záznamov neexistuje v tabu¾ke." << std::endl;
-	//	}
-	//}
-
-	table.find("Višòové").print();
-	table.find("Višòové1").print();
-	table.find("Višòové2").print();
+	//Prehladam aj vsetky mozne postfixy short_title-ov
+	string new_hladane = hladane;
+	for (int i = 0; i < 3; i++)
+	{
+		new_hladane.append("_");
+		try
+		{
+			table.find(new_hladane).print();
+		}
+		catch (ds::adt::structure_error)
+		{
+			// dont print anything
+		}
+	}
 
 	table.clear();
 
