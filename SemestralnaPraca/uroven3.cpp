@@ -75,6 +75,8 @@ int main()
 		}
 	}
 
+	// TODO analyza casovej zlozitosti pouzitej udajovej struktury
+
 	table.clear();
 
 	return 0;
