@@ -203,7 +203,7 @@ public:
 	 * Naèíta údaje zo zvoleného súboru a naèíta ich do tabulky.
 	 * Vracia tabulku naplnenu naèítanımi hodnotami údajov.
 	 */
-	void read_files(ds::adt::SortedSequenceTable<std::string, Udaj>* table, const string& path) const
+	void read_files(ds::adt::SortedSequenceTable<std::string, Udaj*>* table, const string& path) const
 	{
 		std::fstream file;
 		file.open(path, std::ios::in);
@@ -235,22 +235,22 @@ public:
 				if (row.size() == 6) note = row[5]; // FIX kvoli zahraniciu
 				else if (row.size() == 5) note = "";
 
-				Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
+				Udaj* udaj = new Udaj(sort_number, code, official_title, medium_title, short_title, note);
 
 				// Do tabuliek sa ako kluc pouzije short_title
 				// Pri duplicitach sa pouzije za posledny znak  podtrznik "_"
-				if (table->contains(short_title))
+				if (table->contains(official_title))
 				{
-					string short_title_fixed = short_title.append("_");
-					while (table->contains(short_title_fixed))
+					string official_title_fixed = official_title.append("_");
+					while (table->contains(official_title_fixed))
 					{
-						short_title_fixed.append("_");
+						official_title_fixed.append("_");
 					}
-					table->insert(short_title_fixed, udaj);
+					table->insert(official_title_fixed, udaj);
 				}
 				else
 				{
-					table->insert(short_title, udaj);
+					table->insert(official_title, udaj);
 				}
 			}
 		}
