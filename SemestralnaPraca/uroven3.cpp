@@ -25,7 +25,7 @@ int main()
 	constexpr Input input;
 
 	// Použitý typ tabu¾ky pre túto úroveò semestrálnej práce
-	ds::adt::SortedSequenceTable<std::string, Udaj*> table;
+	ds::adt::SortedSequenceTable<std::string, Udaj> table;
 
 	switch (volba)
 	{
@@ -43,6 +43,8 @@ int main()
 		break;
 	default:
 		std::cout << "Nesprávny typ!" << std::endl;
+		table.clear();
+		delete[] paths;
 		return 0;
 	}
 	delete[] paths;
@@ -53,7 +55,7 @@ int main()
 
 	try
 	{
-		table.find(hladane)->print();
+		table.find(hladane).print();
 	}
 	catch (ds::adt::structure_error)
 	{
@@ -67,7 +69,7 @@ int main()
 		new_hladane.append("_");
 		try
 		{
-			table.find(new_hladane)->print();
+			table.find(new_hladane).print();
 		}
 		catch (ds::adt::structure_error)
 		{
