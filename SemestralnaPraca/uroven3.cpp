@@ -3,6 +3,7 @@
 #include "Udaj.h"
 #include "Input.h"
 #include "libds/adt/table.h"
+#include "libds/amt/implicit_sequence.h"
 
 int main()
 {
@@ -49,13 +50,19 @@ int main()
 	}
 	delete[] paths;
 
+
 	string hladane;
 	std::cout << "Zadaj h¾adaný k¾úè (official title): ";
-	std::cin >> hladane;
+	std::cin >> std::ws;
+	getline(std::cin, hladane);
 
 	try
 	{
 		table.find(hladane).print();
+	}
+	catch (std::out_of_range)
+	{
+		// vyhadzovalo random exceptions
 	}
 	catch (ds::adt::structure_error)
 	{
@@ -71,13 +78,15 @@ int main()
 		{
 			table.find(new_hladane).print();
 		}
+		catch (std::out_of_range)
+		{
+			// vyhadzovalo random exceptions
+		}
 		catch (ds::adt::structure_error)
 		{
 			// dont print anything
 		}
 	}
-
-	// TODO analyza casovej zlozitosti pouzitej udajovej struktury
 
 	table.clear();
 

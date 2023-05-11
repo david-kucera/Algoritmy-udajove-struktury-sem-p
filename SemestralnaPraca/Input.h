@@ -7,7 +7,6 @@
 #include "Udaj.h"
 #include <fstream>
 #include <string>
-#include <vector>
 #include <sstream>
 
 #include "libds/adt/table.h"
@@ -41,7 +40,7 @@ public:
 
 				// Prvy riadok odfiltujeme od zvysku udajov
 				if (line.find("sortNumber;code;officialTitle;mediumTitle;shortTitle;note") != -1)  continue;
-				
+
 				while (std::getline(str, word, ';'))
 				{
 					row.push_back(word);
@@ -58,7 +57,7 @@ public:
 
 				Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
 				udaje.push_back(udaj);
-				
+
 			}
 		}
 		else
@@ -112,11 +111,11 @@ public:
 					official_title = row[2];
 					medium_title = row[3];
 					short_title = row[4];
-					if (row.size() == 6) note = row[5]; 
+					if (row.size() == 6) note = row[5];
 					else if (row.size() == 5) note = "";
 
 					// Úprava údajov pre zahranièie - kraj
-					
+
 
 					Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
 
@@ -124,10 +123,10 @@ public:
 					// KRAJE
 					// -------------------------
 
-					if (index_of_input_file == 0) 
+					if (index_of_input_file == 0)
 					{
 						// Kraje majú ako parenta Slovensko,- èiže koreò hierarchie.
-						hierarchy->emplaceSon(*hierarchy->accessRoot(), index_syna).data_ = udaj;		
+						hierarchy->emplaceSon(*hierarchy->accessRoot(), index_syna).data_ = udaj;
 						index_syna++;
 					}
 
