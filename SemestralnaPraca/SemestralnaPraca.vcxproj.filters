@@ -15,13 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="uroven2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="uroven1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="uroven3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -33,6 +30,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Algoritmus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Uroven1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Uroven2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Uroven3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

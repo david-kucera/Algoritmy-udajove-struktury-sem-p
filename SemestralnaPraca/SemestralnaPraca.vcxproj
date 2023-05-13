@@ -129,14 +129,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="uroven2.cpp" />
-    <ClCompile Include="uroven1.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="uroven3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Udaj.h" />
+    <ClInclude Include="Uroven1.h" />
+    <ClInclude Include="Uroven2.h" />
+    <ClInclude Include="Uroven3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="kraje.csv" />

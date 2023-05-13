@@ -5,7 +5,7 @@
 #include "libds/adt/table.h"
 #include "libds/amt/implicit_sequence.h"
 
-int main()
+int maigtn()
 {
 	// Inicializácia heap monitora - na kontrolu únikov pamäte
 	initHeapMonitor();
