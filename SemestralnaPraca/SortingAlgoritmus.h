@@ -19,18 +19,22 @@ public:
 	{
 		ds::adt::ShellSort<Udaj> ss;
 		std::locale::global(std::locale("slovak"));
-		ss.sort(*is, [](auto udaj1, auto udaj2)
+		/*ss.sort(*is, [](auto udaj1, auto udaj2)
 		{
 			auto word1 = udaj1.get_official_title();
 			auto word2 = udaj2.get_official_title();
 			return std::lexicographical_compare(word1.begin(), word1.end(), word2.begin(), word2.end());
-		});
+		});*/
 
-		/*ds::adt::ShellSort<Udaj> ss;
-		ss.sort(*is, [](auto word1, auto word2)
+		/*ss.sort(*is, [](auto word1, auto word2)
 		{
 			return word1.get_official_title() < word2.get_official_title();
 		});*/
+
+		ss.sort(*is, [](auto word1, auto word2)
+		{
+			return word2.get_official_title().compare(word1.get_official_title()) > word1.get_official_title().compare(word2.get_official_title());
+		});
 	}
 
 	static int count_vowels(const std::string word)
