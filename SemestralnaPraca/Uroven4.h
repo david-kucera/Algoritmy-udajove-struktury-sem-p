@@ -14,7 +14,7 @@ public:
 			i.print();
 		}
 		std::cout << "Možnosti sortovania údajov: [1] compareAlphabetical [2] compareVowelsCount" << std::endl;
-		ds::adt::ShellSort<Udaj> ss;
+		
 
 		while (true)
 		{

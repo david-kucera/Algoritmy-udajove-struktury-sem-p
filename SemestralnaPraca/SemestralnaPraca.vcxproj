@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SortingAlgoritmus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
