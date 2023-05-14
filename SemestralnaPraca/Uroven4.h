@@ -24,24 +24,39 @@ public:
 			{
 				std::cout << "Porovnavam alphabetical" << std::endl;
 				sorting_algo::sort_compareAlphabetical(&is);
+				vypis_vysledok(&is);
 				break;
 			}
 			if (volba == 50)
 			{
 				std::cout << "Porovnavam vowels count" << std::endl;
 				sorting_algo::sort_compareVowelsCount(&is);
+				vypis_hodnoty_porovnavania(&is);
 				break;
 			}
-		}
-
-		std::cout << "Vısledok po sortovaní údajov:" << std::endl;
-		for (auto& i : is)
-		{
-			i.print();
 		}
 
 		std::cout << " Stlaè akıko¾vek kláves pre návrat do menu aplikácie." << std::endl;
 		auto ch = _getch();
 		return;
+	}
+
+	static void vypis_vysledok(ds::amt::ImplicitSequence<Udaj>* is)
+	{
+		std::cout << "Vısledok po sortovaní údajov:" << std::endl;
+		for (auto& i : is)
+		{
+			i.print();
+		}
+	}
+
+	static void vypis_hodnoty_porovnavania(ds::amt::ImplicitSequence<Udaj>* is)
+	{
+		std::cout << "Vısledok po sortovaní údajov:" << std::endl;
+		for (auto& i : is)
+		{
+			i.print();
+			std::cout << std::to_string(sorting_algo::count_vowels(i.get_official_title())) << std::endl;
+		}
 	}
 };

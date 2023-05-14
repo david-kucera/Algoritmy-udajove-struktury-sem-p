@@ -23,15 +23,12 @@ int main()
 
 		std::cout << "1 - prvá úroveò" << std::endl;
 		std::cout << " Naèítanie údajov o obciach, okresoch a krajoch, spracovanie údajov splòujúcich zadanı predikát." << std::endl;
-		// TODO doplnit do dokumentacie UML diagram aktivit univerzalneho algoritmu a programatorsku prirucku
 
 		std::cout << "2 - druhá úroveò (vrámci nej je obsiahnutá aj 4. úroveò)" << std::endl;
 		std::cout << " Vytvorenie pomyselnej hierarchie Slovenskej republiky a navigácia vrámci nej." << std::endl;
-		// TODO dokumenatcia vysvetlit sposob nacitania udajov a zlozitost
 
 		std::cout << "3 - tretia úroveò" << std::endl;
 		std::cout << " Efektívne vyh¾adávanie územnıch jednotiek pomocou názvu." << std::endl;
-		// TODO analyza casovej zlozitosti
 
 		std::cout << std::endl;
 
