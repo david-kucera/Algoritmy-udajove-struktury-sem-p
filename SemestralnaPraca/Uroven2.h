@@ -21,7 +21,7 @@ public:
         paths[2] = "obce.csv";
 
         // Trieda Input naèíta všetky údaje do pomyselnej hierarchie Slovenska, t.j. koreò je Slovensko, jej synovia sú kraje - ich synovia okresy - a ich synovia obce.
-        constexpr Input input;
+        constexpr input input;
         input.read_files(&hierarchy, paths);
         delete[] paths;
 
@@ -142,12 +142,9 @@ public:
                 std::cin >> volba;
                 if (volba == 1)
                 {
-                    ds::amt::ImplicitSequence<Udaj> is;
-                    // TODO fill is with udaj values
-                    uroven4().spusti_uroven(is);
+	                uroven4::spusti_uroven(is);
                     return;
                 }
-                // TODO clear IS
                 continue;
             }
             if (option == "0")

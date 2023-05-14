@@ -16,7 +16,7 @@ public:
 		paths[0] = "kraje.csv";
 		paths[1] = "okresy.csv";
 		paths[2] = "obce.csv";
-		constexpr Input input;
+		constexpr input input;
 
 		// Použitý typ tabu¾ky pre túto úroveò semestrálnej práce
 		ds::adt::SortedSequenceTable<std::string, Udaj*> table;

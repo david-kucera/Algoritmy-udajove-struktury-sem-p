@@ -2,8 +2,8 @@
 // ReSharper disable CppClangTidyClangDiagnosticInvalidUtf8
 #pragma once
 #include <functional>
-
 #include "Udaj.h"
+
 /*
  * Samostatnı objekt pre algoritmus, ktorı prechadza údaje a zisuje èi splòujú zadanı predikát.
  */

@@ -4,17 +4,17 @@
 #pragma once
 #include <fstream>
 #include <vector>
-#include "Udaj.h"
 #include <fstream>
 #include <string>
 #include <sstream>
 
+#include "Udaj.h"
 #include "libds/adt/table.h"
 #include "libds/amt/explicit_hierarchy.h"
 
 using string = std::string;
 
-class Input
+class input
 {
 public:
 	/*

@@ -2,7 +2,6 @@
 #include <conio.h>
 #include <iostream>
 #include "Windows.h"
-
 #include "Algoritmus.h"
 #include "Input.h"
 #include "Udaj.h"
@@ -11,8 +10,6 @@
 
 class uroven1
 {
-private:
-
 public:
 	static void spusti_uroven()
 	{
@@ -46,7 +43,7 @@ public:
 		* Trieda Input preberá súbor a obsahuje metódu read(), ktorá vracia vector<Udaj>, t.j. všetky naèítané údaje z .csv súboru.
 		* Dá sa poui len s jednım súborom naraz a vıstup len do nového vectoru.
 		*/
-        constexpr Input input;
+        constexpr input input;
         std::vector<Udaj> udaje = input.read(s);
         std::vector<Udaj> splnujuce_predikat;
 

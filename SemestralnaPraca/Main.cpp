@@ -40,8 +40,8 @@ int main()
 
 		// Volba úrovne, alebo ukonèenie aplikácie.
 		if (ch == 27) return 0;
-		if (ch == 49) uroven1().spusti_uroven();
-		if (ch == 50) uroven2().spusti_uroven();
-		if (ch == 51) uroven3().spusti_uroven();
+		if (ch == 49) uroven1::spusti_uroven();
+		if (ch == 50) uroven2::spusti_uroven();
+		if (ch == 51) uroven3::spusti_uroven();
 	}
 }
