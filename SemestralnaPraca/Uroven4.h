@@ -23,6 +23,7 @@ public:
 			auto volba = _getch();
 			if (volba == 49)
 			{
+				VYMAZ;
 				std::cout << "Porovnavam alphabetical" << std::endl;
 				sorting_algo::sort_compareAlphabetical(&is);
 				vypis_vysledok(is);
@@ -30,6 +31,7 @@ public:
 			}
 			if (volba == 50)
 			{
+				VYMAZ;
 				std::cout << "Porovnavam vowels count" << std::endl;
 				sorting_algo::sort_compareVowelsCount(&is);
 				vypis_hodnoty_porovnavania(is);
