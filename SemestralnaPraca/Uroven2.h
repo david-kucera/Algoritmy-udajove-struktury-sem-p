@@ -1,6 +1,7 @@
 #pragma once
 
 #define VYMAZ system("cls") // makro pre vyèistenie obrazovky
+#include "Uroven4.h"
 
 class uroven2
 {
@@ -8,7 +9,6 @@ public:
 	static void spusti_uroven()
 	{
         VYMAZ;
-
         // Vytvorenie hierarchie s pomyselným koreòom Slovenskom
         ds::amt::MultiWayExplicitHierarchy<Udaj> hierarchy{};
         // Nezadany-prazdny kod kvoli metode hasType v triede Algoritmus ... 
@@ -28,51 +28,42 @@ public:
         //Prehliadka hierarchiou ... zaèíname na koreni hierarchie
         ds::amt::MultiWayExplicitHierarchyBlock<Udaj>* current_node = (&hierarchy)->accessRoot();
 
-        int option, index;
-        std::cout << "Aktuálny vrchol: " << current_node->data_.get_official_title() << std::endl;
-        for (int i = 0; i < current_node->sons_->size(); ++i)
+        int index;
+        string option;
+        while (true)
         {
-            std::cout << "[" << i << "]" << current_node->sons_->access(i)->data_->data_.get_official_title() << std::endl;
-        }
-        std::cout << "Zvo¾ operáciu: " << std::endl;
-        std::cout << "\t[1] - Presuò sa na nadradenú jednotku. " << std::endl;
-        std::cout << "\t[2] - Presuò sa na podradenú jednotku. " << std::endl;
-        std::cout << "\t[3] - Prejdi podradené prvou úrovòou. " << std::endl;
-        std::cout << std::endl;
-        std::cout << "\t[0] - Ukonèi program. " << std::endl;
-        std::cout << "Vo¾ba: ";
-        std::cin >> option;
-
-        while (option != 0)
-        {
-            switch (option)
+            VYMAZ;
+            std::cout << "Aktuálny vrchol: " << current_node->data_.get_official_title() << std::endl;
+            for (int i = 0; i < current_node->sons_->size(); ++i)
             {
-            case 1:
+                std::cout << "[" << i << "]" << current_node->sons_->access(i)->data_->data_.get_official_title() << std::endl;
+            }
+            std::cout << "Zvo¾ operáciu: " << std::endl;
+            std::cout << "\t[1] - Presuò sa na nadradenú jednotku. " << std::endl;
+            std::cout << "\t[2] - Presuò sa na podradenú jednotku. " << std::endl;
+            std::cout << "\t[3] - Prejdi podradené prvou úrovòou. " << std::endl;
+            std::cout << std::endl;
+            std::cout << "\t[0] - Ukonèi program. " << std::endl;
+            std::cout << "Vo¾ba: ";
+            std::cin >> option;
+
+            if (option == "1")
+            {
                 // Ak existuje parent, tak ho sprístupním, ak nie, opakujem vo¾bu
                 if (current_node->parent_ != nullptr) current_node = hierarchy.accessParent(*current_node);
-                VYMAZ;
-                std::cout << "Aktuálny vrchol: " << current_node->data_.get_official_title() << std::endl;
-                for (int i = 0; i < current_node->sons_->size(); ++i)
-                {
-                    std::cout << "[" << i << "]" << current_node->sons_->access(i)->data_->data_.get_official_title() << std::endl;
-                }
-                break;
-            case 2:
+            }
+            if (option == "2")
+            {
                 if (current_node->sons_->size() != 0)
                 {
                     std::cout << "Zadaj index syna, na ktorého sa chceš presunú: ";
                     std::cin >> index;
-                    VYMAZ;
                     current_node = hierarchy.accessSon(*current_node, index);
                 }
-                std::cout << "Aktuálny vrchol: " << current_node->data_.get_official_title() << std::endl;
-                for (int i = 0; i < current_node->sons_->size(); ++i)
-                {
-                    std::cout << "[" << i << "]" << current_node->sons_->access(i)->data_->data_.get_official_title() << std::endl;
-                }
-                break;
-            case 3:
-                VYMAZ;
+            }
+            if (option == "3")
+            {
+	            VYMAZ;
                 // Prejdenie prvou úrovòou SP
                 Algoritmus alg;
 
@@ -95,6 +86,8 @@ public:
                 const HANDLE h_console = GetStdHandle(STD_OUTPUT_HANDLE); // Handler pre konzolu
                 SetConsoleTextAttribute(h_console, 14);  // Žltá farba písma pre výpis údajov
 
+                ds::amt::ImplicitSequence<Udaj> is;
+
                 // Podla typu predikátu vykonám potrebné operácie
                 switch (typ_predikatu)
                 {
@@ -103,9 +96,10 @@ public:
                         {
                             return Algoritmus::starts_with_str(prehladavane, predikat);
                         },
-                        [&pocet_splnujucich_predikat](const Udaj& udaj)
+                        [&pocet_splnujucich_predikat, &is](const Udaj& udaj)
                         {
-                            udaj.print();
+                            is.insertLast().data_ = udaj;
+                            is.accessLast()->data_.print();
                             pocet_splnujucich_predikat++;
                         });
                     break;
@@ -114,9 +108,10 @@ public:
                         {
                             return Algoritmus::contains_str(prehladavane, predikat);
                         },
-                        [&pocet_splnujucich_predikat](const Udaj& udaj)
+                        [&pocet_splnujucich_predikat, &is](const Udaj& udaj)
                         {
-                            udaj.print();
+                            is.insertLast().data_ = udaj;
+                            is.accessLast()->data_.print();
                             pocet_splnujucich_predikat++;
                         });
                     break;
@@ -125,9 +120,10 @@ public:
                         {
                             return Algoritmus::hasType(prehladavane, predikat);
                         },
-                        [&pocet_splnujucich_predikat](const Udaj& udaj)
+                        [&pocet_splnujucich_predikat, &is](const Udaj& udaj)
                         {
-                            udaj.print();
+                            is.insertLast().data_ = udaj;
+                            is.accessLast()->data_.print();
                             pocet_splnujucich_predikat++;
                         });
                     break;
@@ -140,23 +136,30 @@ public:
                 std::cout << pocet_splnujucich_predikat << std::endl;
                 SetConsoleTextAttribute(h_console, 7); // Defaultná farba písma
 
-                break;
+                std::cout << "Chceš sortova výsledky? Stlaè [1] pre áno" << std::endl;
+                std::cout << "Stlaè akýko¾vek iný kláves pre návrat do hierarchie." << std::endl;
+                int volba;
+                std::cin >> volba;
+                if (volba == 1)
+                {
+                    ds::amt::ImplicitSequence<Udaj> is;
+                    // TODO fill is with udaj values
+                    uroven4().spusti_uroven(is);
+                    return;
+                }
+                // TODO clear IS
+                continue;
             }
+            if (option == "0")
+            {
+                // Vymazanie hierarchie
+                hierarchy.clear();
 
-            std::cout << "Zvo¾ operáciu: " << std::endl;
-            std::cout << "\t[1] - Presuò sa na nadradenú jednotku. " << std::endl;
-            std::cout << "\t[2] - Presuò sa na podradenú jednotku. " << std::endl;
-            std::cout << "\t[3] - Prejdi podradené prvou úrovòou. " << std::endl;
-            std::cout << std::endl;
-            std::cout << "\t[0] - Ukonèi program. " << std::endl;
-            std::cout << "Vo¾ba: ";
-            std::cin >> option;
+                std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
+                auto ch = _getch();
+                return;
+            }
         }
-
-        // Vymazanie hierarchie
-        hierarchy.clear();
-
-		std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
-		auto ch = _getch();
+        
 	}
 };

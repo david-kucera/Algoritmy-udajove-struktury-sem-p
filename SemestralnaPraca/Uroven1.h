@@ -2,11 +2,12 @@
 #include <conio.h>
 #include <iostream>
 #include "Windows.h"
-#include <libds/heap_monitor.h>
 
 #include "Algoritmus.h"
 #include "Input.h"
 #include "Udaj.h"
+
+#define VYMAZ system("cls") // makro pre vyèistenie obrazovky
 
 class uroven1
 {
@@ -15,7 +16,7 @@ private:
 public:
 	static void spusti_uroven()
 	{
-        system("cls");
+        VYMAZ;
         /*
 		* Vo¾ba od uívate¾a, ktorı vstupnı súbor chce poui pre naèítanie.
 		* Ak sa zadá nesprávna vo¾ba, automaticky sa naèíta súbor obce.csv.

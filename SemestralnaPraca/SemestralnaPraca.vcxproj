@@ -130,7 +130,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="uroven3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
@@ -139,6 +138,7 @@
     <ClInclude Include="Uroven1.h" />
     <ClInclude Include="Uroven2.h" />
     <ClInclude Include="Uroven3.h" />
+    <ClInclude Include="Uroven4.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="kraje.csv" />

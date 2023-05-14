@@ -1,11 +1,13 @@
 #pragma once
 
+#define VYMAZ system("cls") // makro pre vyèistenie obrazovky
+
 class uroven3
 {
 public:
 	static void spusti_uroven()
 	{
-		system("cls");
+		VYMAZ;
 		std::cout << "Zvo¾ si tabu¾ku, z ktorej chceš vypísat hodnoty: 1 - kraje 2 - okresy 3 - obce" << std::endl;
 		int volba;
 		std::cin >> volba;
@@ -17,7 +19,7 @@ public:
 		constexpr Input input;
 
 		// Použitý typ tabu¾ky pre túto úroveò semestrálnej práce
-		ds::adt::SortedSequenceTable<std::string, Udaj> table;
+		ds::adt::SortedSequenceTable<std::string, Udaj*> table;
 
 		switch (volba)
 		{
@@ -48,7 +50,7 @@ public:
 
 		try
 		{
-			table.find(hladane).print();
+			table.find(hladane)->print();
 		}
 		catch (std::out_of_range)
 		{
@@ -66,7 +68,7 @@ public:
 			new_hladane.append("_");
 			try
 			{
-				table.find(new_hladane).print();
+				table.find(new_hladane)->print();
 			}
 			catch (std::out_of_range)
 			{
@@ -78,8 +80,12 @@ public:
 			}
 		}
 
-		table.clear();
+		for (auto i = table.begin(); i != table.end(); ++i)
+		{
+			delete (*i).data_;
+		}
 
+		table.clear();
 
 		std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
 		auto ch = _getch();
