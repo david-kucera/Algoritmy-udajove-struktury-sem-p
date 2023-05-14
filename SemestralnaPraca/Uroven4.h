@@ -3,6 +3,7 @@
 #include "SortingAlgoritmus.h"
 #include "libds/adt/sorts.h"
 #include "libds/amt/implicit_sequence.h"
+#include <conio.h>
 
 class uroven4
 {
@@ -24,24 +25,26 @@ public:
 			{
 				std::cout << "Porovnavam alphabetical" << std::endl;
 				sorting_algo::sort_compareAlphabetical(&is);
-				vypis_vysledok(&is);
+				vypis_vysledok(is);
 				break;
 			}
 			if (volba == 50)
 			{
 				std::cout << "Porovnavam vowels count" << std::endl;
 				sorting_algo::sort_compareVowelsCount(&is);
-				vypis_hodnoty_porovnavania(&is);
+				vypis_hodnoty_porovnavania(is);
 				break;
 			}
 		}
+
+		is.clear();
 
 		std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
 		auto ch = _getch();
 		return;
 	}
 
-	static void vypis_vysledok(ds::amt::ImplicitSequence<Udaj>* is)
+	static void vypis_vysledok(ds::amt::ImplicitSequence<Udaj> is)
 	{
 		std::cout << "Výsledok po sortovaní údajov:" << std::endl;
 		for (auto& i : is)
@@ -50,7 +53,7 @@ public:
 		}
 	}
 
-	static void vypis_hodnoty_porovnavania(ds::amt::ImplicitSequence<Udaj>* is)
+	static void vypis_hodnoty_porovnavania(ds::amt::ImplicitSequence<Udaj> is)
 	{
 		std::cout << "Výsledok po sortovaní údajov:" << std::endl;
 		for (auto& i : is)
