@@ -64,23 +64,23 @@ public:
         if (typ_predikatu == 1)
         {
             Algoritmus::prehladaj(udaje.begin(), udaje.end(), [predikat](auto udaj)->bool
-                {
-                    return Algoritmus::starts_with_str(udaj, predikat);
-                }, [&splnujuce_predikat](const Udaj& udaj)->void
-                {
-                    splnujuce_predikat.push_back(udaj);
-                });
+            {
+                return Algoritmus::starts_with_str(udaj, predikat);
+            }, [&splnujuce_predikat](const Udaj& udaj)->void
+            {
+                splnujuce_predikat.push_back(udaj);
+            });
 
         }
         if (typ_predikatu == 2)
         {
             Algoritmus::prehladaj(udaje.begin(), udaje.end(), [predikat](auto udaj)->bool
-                {
-                    return Algoritmus::contains_str(udaj, predikat);
-                }, [&splnujuce_predikat](const Udaj& udaj)->void
-                {
-                    splnujuce_predikat.push_back(udaj);
-                });
+            {
+                return Algoritmus::contains_str(udaj, predikat);
+            }, [&splnujuce_predikat](const Udaj& udaj)->void
+            {
+                splnujuce_predikat.push_back(udaj);
+            });
         }
 
         /*
