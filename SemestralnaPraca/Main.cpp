@@ -21,13 +21,20 @@ int main()
 		std::cout << "\n" << std::endl;
 		std::cout << "Vyber si úroveò semestrálnej práce, ktorú chceš zapnú: " << std::endl;
 
-		std::cout << "1 - prvá úroveò" << std::endl;
+		const HANDLE h_console = GetStdHandle(STD_OUTPUT_HANDLE); 
+		SetConsoleTextAttribute(h_console, 14);  
+		std::cout << "1 - prvá úroveò (vrámci nej je obsiahnutá aj 4. úroveò)" << std::endl;
+		SetConsoleTextAttribute(h_console, 7); 
 		std::cout << " Naèítanie údajov o obciach, okresoch a krajoch, spracovanie údajov splòujúcich zadanı predikát." << std::endl;
 
+		SetConsoleTextAttribute(h_console, 14); 
 		std::cout << "2 - druhá úroveò (vrámci nej je obsiahnutá aj 4. úroveò)" << std::endl;
+		SetConsoleTextAttribute(h_console, 7);
 		std::cout << " Vytvorenie pomyselnej hierarchie Slovenskej republiky a navigácia vrámci nej." << std::endl;
 
+		SetConsoleTextAttribute(h_console, 14); 
 		std::cout << "3 - tretia úroveò" << std::endl;
+		SetConsoleTextAttribute(h_console, 7);
 		std::cout << " Efektívne vyh¾adávanie územnıch jednotiek pomocou názvu." << std::endl;
 
 		std::cout << std::endl;

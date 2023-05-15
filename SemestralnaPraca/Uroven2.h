@@ -1,7 +1,8 @@
 #pragma once
+#include "Uroven4.h"
 
 #define VYMAZ system("cls") // makro pre vyèistenie obrazovky
-#include "Uroven4.h"
+
 
 class uroven2
 {

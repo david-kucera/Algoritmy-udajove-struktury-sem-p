@@ -5,6 +5,8 @@
 #include "libds/amt/implicit_sequence.h"
 #include <conio.h>
 
+#define VYMAZ system("cls") // makro pre vyèistenie obrazovky
+
 class uroven4
 {
 public:

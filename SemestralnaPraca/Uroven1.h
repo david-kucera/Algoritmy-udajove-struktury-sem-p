@@ -5,6 +5,7 @@
 #include "Algoritmus.h"
 #include "Input.h"
 #include "Udaj.h"
+#include "Uroven4.h"
 
 #define VYMAZ system("cls") // makro pre vyèistenie obrazovky
 
@@ -89,6 +90,8 @@ public:
         if (splnujuce_predikat.empty())
         {
             std::cout << "Žiaden údaj nesplòuje zadaný predikát." << std::endl;
+            std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
+            auto ch = _getch();
             return;
         }
 
@@ -101,14 +104,27 @@ public:
         /*
          * Výpis údajov na konzolu žltou farbou, ktoré splòujú predikát.
          */
+        ds::amt::ImplicitSequence<Udaj> is;
         for (auto& udaj : splnujuce_predikat)
         {
             udaj.print();
+            is.insertLast().data_ = udaj;
         }
 
         SetConsoleTextAttribute(h_console, 7); // Defaultná farba písma
         std::cout << std::endl;
         std::cout << "Poèet údajov splòujúcich predikát: " << splnujuce_predikat.size() << std::endl;
+
+        std::cout << "Chceš sortova výsledky? Stlaè [1] pre áno" << std::endl;
+        std::cout << "Stlaè akýko¾vek iný kláves pre návrat do hierarchie." << std::endl;
+        int volba;
+        std::cin >> volba;
+        if (volba == 1)
+        {
+            uroven4::spusti_uroven(is);
+            return;
+        }
+
 
         std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
         auto ch = _getch();
