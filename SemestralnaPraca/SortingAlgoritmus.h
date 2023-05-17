@@ -8,7 +8,7 @@
 class sorting_algo
 {
 public:
-	static void sort_compareVowelsCount(ds::amt::ImplicitSequence<Udaj>* is)
+	static void sort_compare_vowels_count(ds::amt::ImplicitSequence<Udaj>* is)
 	{
 		ds::adt::QuickSort<Udaj> quick_sort;
 		quick_sort.sort(*is, [](auto word1, auto word2)
@@ -17,7 +17,7 @@ public:
 		});
 	}
 
-	static void sort_compareAlphabetical(ds::amt::ImplicitSequence<Udaj>* is)
+	static void sort_compare_alphabetical(ds::amt::ImplicitSequence<Udaj>* is)
 	{
 		ds::adt::QuickSort<Udaj> quick_sort;
 		std::locale::global(std::locale("Slovak_Slovakia.1250"));

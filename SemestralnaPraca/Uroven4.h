@@ -27,7 +27,7 @@ public:
 			{
 				VYMAZ;
 				std::cout << "Porovnavam alphabetical" << std::endl;
-				sorting_algo::sort_compareAlphabetical(&is);
+				sorting_algo::sort_compare_alphabetical(&is);
 				vypis_vysledok(is);
 				break;
 			}
@@ -35,7 +35,7 @@ public:
 			{
 				VYMAZ;
 				std::cout << "Porovnavam vowels count" << std::endl;
-				sorting_algo::sort_compareVowelsCount(&is);
+				sorting_algo::sort_compare_vowels_count(&is);
 				vypis_hodnoty_porovnavania(is);
 				break;
 			}
