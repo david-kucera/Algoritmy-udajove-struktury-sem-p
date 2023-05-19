@@ -9,8 +9,7 @@ public:
 	{
 		VYMAZ;
 		std::cout << "Zvo¾ si tabu¾ku, z ktorej chceš vypísat hodnoty: 1 - kraje 2 - okresy 3 - obce" << std::endl;
-		int volba;
-		std::cin >> volba;
+		auto volba = _getch();
 
 		const auto paths = new std::string[3];
 		paths[0] = "kraje.csv";
@@ -23,15 +22,15 @@ public:
 
 		switch (volba)
 		{
-		case 1:
+		case 49:
 			// kraje
 			input.read_files(&table, paths[0]);
 			break;
-		case 2:
+		case 50:
 			// okresy
 			input.read_files(&table, paths[1]);
 			break;
-		case 3:
+		case 51:
 			// obce
 			input.read_files(&table, paths[2]);
 			break;

@@ -26,7 +26,6 @@ public:
 			if (volba == 49)
 			{
 				VYMAZ;
-				std::cout << "Porovnavam alphabetical" << std::endl;
 				sorting_algo::sort_compare_alphabetical(&is);
 				vypis_vysledok(is);
 				break;
@@ -34,7 +33,6 @@ public:
 			if (volba == 50)
 			{
 				VYMAZ;
-				std::cout << "Porovnavam vowels count" << std::endl;
 				sorting_algo::sort_compare_vowels_count(&is);
 				vypis_hodnoty_porovnavania(is);
 				break;

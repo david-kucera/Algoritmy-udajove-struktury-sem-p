@@ -20,17 +20,16 @@ public:
 		* Ak sa zadá nesprávna vo¾ba, automaticky sa naèíta súbor obce.csv.
 		*/
         std::cout << "Druh súboru  1 = kraje   2 = okresy  3 = obce" << std::endl;
-        std::cout << "Zvol druh súboru:";
-        int type_subor;
-        std::cin >> type_subor;
+        std::cout << "Zvol druh súboru\n";
+        auto ch = _getch();
 
         std::string subor;
-        switch (type_subor)
+        switch (ch)
         {
-        case 1:
+        case 49:
             subor = "kraje.csv";
             break;
-        case 2:
+        case 50:
             subor = "okresy.csv";
             break;
         default:
@@ -53,16 +52,15 @@ public:
         * Ak sa zadá nesprávne èíslo, automaticky sa ráta s predikátom starts_with_str.
         */
         std::cout << "Typ predikátu: starts_with_str = 1  contains_str = 2" << std::endl;
-        std::cout << "Zvol typ predikátu:";
-        int typ_predikatu;
-        std::cin >> typ_predikatu;
-        if (typ_predikatu != 1 && typ_predikatu != 2) typ_predikatu = 1;
+        std::cout << "Zvol typ predikátu\n";
+        auto volba = _getch();
+        if (volba != 49 && volba != 50) volba = 49;
 
         std::cout << "Zadaj predikát:";
         std::string predikat;
         std::cin >> predikat;
 
-        if (typ_predikatu == 1)
+        if (volba == 49)
         {
             Algoritmus::prehladaj(udaje.begin(), udaje.end(), [predikat](auto udaj)->bool
             {
@@ -73,7 +71,7 @@ public:
             });
 
         }
-        if (typ_predikatu == 2)
+        if (volba == 50)
         {
             Algoritmus::prehladaj(udaje.begin(), udaje.end(), [predikat](auto udaj)->bool
             {
@@ -114,17 +112,15 @@ public:
         std::cout << "Poèet údajov splòujúcich predikát: " << splnujuce_predikat.size() << std::endl;
 
         std::cout << "Chceš sortova výsledky? Stlaè [1] pre áno" << std::endl;
-        std::cout << "Stlaè akýko¾vek iný kláves pre návrat do hierarchie." << std::endl;
-        int volba;
-        std::cin >> volba;
-        if (volba == 1)
+        std::cout << "Stlaè akýko¾vek iný kláves pre návrat do menu." << std::endl;
+
+        auto sortuj = _getch();
+        if (sortuj == 49)
         {
             uroven4::spusti_uroven(splnujuce_predikat);
             return;
         }
-
-
-        std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
-        auto ch = _getch();
+        splnujuce_predikat.clear();
+        auto wait = _getch();
 	}
 };

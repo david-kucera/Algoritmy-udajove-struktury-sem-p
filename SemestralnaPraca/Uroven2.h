@@ -30,7 +30,6 @@ public:
         ds::amt::MultiWayExplicitHierarchyBlock<Udaj>* current_node = (&hierarchy)->accessRoot();
 
         int index;
-        string option;
         while (true)
         {
             VYMAZ;
@@ -44,25 +43,25 @@ public:
             std::cout << "\t[2] - Presuò sa na podradenú jednotku. " << std::endl;
             std::cout << "\t[3] - Prejdi podradené prvou úrovòou. " << std::endl;
             std::cout << std::endl;
-            std::cout << "\t[0] - Ukonèi program. " << std::endl;
-            std::cout << "Vo¾ba: ";
-            std::cin >> option;
+            std::cout << "\t[0] - Ukonèi úroveò. " << std::endl;
+            std::cout << "Vo¾ba: \n";
+            auto option = _getch();
 
-            if (option == "1")
+            if (option == 49)
             {
                 // Ak existuje parent, tak ho sprístupním, ak nie, opakujem vo¾bu
                 if (current_node->parent_ != nullptr) current_node = hierarchy.accessParent(*current_node);
             }
-            if (option == "2")
+            if (option == 50)
             {
                 if (current_node->sons_->size() != 0)
                 {
-                    std::cout << "Zadaj index syna, na ktorého sa chceš presunú: ";
-                    std::cin >> index;
-                    current_node = hierarchy.accessSon(*current_node, index);
+                    std::cout << "Zadaj index syna, na ktorého sa chceš presunú: \n";
+                    auto index = _getch();
+                    current_node = hierarchy.accessSon(*current_node, index-48);
                 }
             }
-            if (option == "3")
+            if (option == 51)
             {
 	            VYMAZ;
                 // Prejdenie prvou úrovòou SP
@@ -70,9 +69,8 @@ public:
 
                 std::cout << "Typ predikátu: starts_with_str = 1 [string]  contains_str = 2 [string]  has_type = 3 [kraj/okres/obec]" << std::endl;
 
-                std::cout << "Zvo¾ typ predikátu: ";
-                int typ_predikatu;
-                std::cin >> typ_predikatu;
+                std::cout << "Zvo¾ typ predikátu: \n";
+                auto typ_predikatu = _getch();
 
                 std::cout << "Zvo¾ predikát: ";
                 string predikat;
@@ -92,7 +90,7 @@ public:
                 // Podla typu predikátu vykonám potrebné operácie
                 switch (typ_predikatu)
                 {
-                case 1:
+                case 49:
                     Algoritmus::prehladaj(begin, hierarchy.end(), [predikat, &alg](const Udaj& prehladavane)->bool
                         {
                             return Algoritmus::starts_with_str(prehladavane, predikat);
@@ -104,7 +102,7 @@ public:
                             pocet_splnujucich_predikat++;
                         });
                     break;
-                case 2:
+                case 50:
                     Algoritmus::prehladaj(begin, hierarchy.end(), [predikat, &alg](const Udaj& prehladavane)->bool
                         {
                             return Algoritmus::contains_str(prehladavane, predikat);
@@ -116,7 +114,7 @@ public:
                             pocet_splnujucich_predikat++;
                         });
                     break;
-                case 3:
+                case 51:
                     Algoritmus::prehladaj(begin, hierarchy.end(), [predikat, &alg](const Udaj& prehladavane)->bool
                         {
                             return Algoritmus::hasType(prehladavane, predikat);
@@ -139,22 +137,21 @@ public:
 
                 std::cout << "Chceš sortova výsledky? Stlaè [1] pre áno" << std::endl;
                 std::cout << "Stlaè akýko¾vek iný kláves pre návrat do hierarchie." << std::endl;
-                int volba;
-                std::cin >> volba;
-                if (volba == 1)
+                auto sort = _getch();
+                if (sort == 49)
                 {
 	                uroven4::spusti_uroven(is);
                     return;
                 }
                 continue;
             }
-            if (option == "0")
+            if (option == 48)
             {
                 // Vymazanie hierarchie
                 hierarchy.clear();
 
                 std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
-                auto ch = _getch();
+                auto end = _getch();
                 return;
             }
         }
