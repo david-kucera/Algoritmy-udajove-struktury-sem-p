@@ -41,12 +41,12 @@ public:
         const char* s = subor.c_str();  // Pretypovanie na const char* kvôli triede Input
 
         /*
-		* Trieda Input preberá súbor a obsahuje metódu read(), ktorá vracia vector<Udaj>, t.j. všetky naèítané údaje z .csv súboru.
-		* Dá sa poui len s jednım súborom naraz a vıstup len do nového vectoru.
+		* Trieda Input preberá súbor a obsahuje metódu read(), ktorá vracia ImplicitSequence<Udaj>, t.j. všetky naèítané údaje z .csv súboru.
+		* Dá sa poui len s jednım súborom naraz a vıstup len do novej implicitnej sekvencie.
 		*/
         constexpr input input;
-        std::vector<Udaj> udaje = input.read(s);
-        std::vector<Udaj> splnujuce_predikat;
+        ds::amt::ImplicitSequence<Udaj> udaje = input.read(s);
+        ds::amt::ImplicitSequence<Udaj> splnujuce_predikat;
 
         /*
         * Vo¾ba od uívate¾a, ktorı predikát sa má poui.
@@ -69,7 +69,7 @@ public:
                 return Algoritmus::starts_with_str(udaj, predikat);
             }, [&splnujuce_predikat](const Udaj& udaj)->void
             {
-                splnujuce_predikat.push_back(udaj);
+                splnujuce_predikat.insertLast().data_ = udaj;
             });
 
         }
@@ -80,14 +80,14 @@ public:
                 return Algoritmus::contains_str(udaj, predikat);
             }, [&splnujuce_predikat](const Udaj& udaj)->void
             {
-                splnujuce_predikat.push_back(udaj);
+                splnujuce_predikat.insertLast().data_ = udaj;
             });
         }
 
         /*
         * Vyhodnotenie naèítania a predikátu a následnı vıpis na konzolu.
         */
-        if (splnujuce_predikat.empty())
+        if (splnujuce_predikat.size() == 0)
         {
             std::cout << "iaden údaj nesplòuje zadanı predikát." << std::endl;
             std::cout << " Stlaè akıko¾vek kláves pre návrat do menu aplikácie." << std::endl;
@@ -104,11 +104,9 @@ public:
         /*
          * Vıpis údajov na konzolu ltou farbou, ktoré splòujú predikát.
          */
-        ds::amt::ImplicitSequence<Udaj> is;
         for (auto& udaj : splnujuce_predikat)
         {
             udaj.print();
-            is.insertLast().data_ = udaj;
         }
 
         SetConsoleTextAttribute(h_console, 7); // Defaultná farba písma
@@ -121,7 +119,7 @@ public:
         std::cin >> volba;
         if (volba == 1)
         {
-            uroven4::spusti_uroven(is);
+            uroven4::spusti_uroven(splnujuce_predikat);
             return;
         }
 

@@ -19,14 +19,14 @@ class input
 public:
 	/*
 	 * Metóda používaná len pri 1. úrovni SP.
-	 * Naèíta údaje zo zvoleného súboru a naèíta ich do vectora.
-	 * Vracia vector naplnený naèítanými hodnotami údajov.
+	 * Naèíta údaje zo zvoleného súboru a naèíta ich do IS.
+	 * Vracia IS naplnenú naèítanými hodnotami údajov.
 	 */
-	std::vector<Udaj> read(const char* input_file) const
+	ds::amt::ImplicitSequence<Udaj> read(const char* input_file) const
 	{
 		std::fstream file;
 		file.open(input_file, std::ios::in);
-		std::vector<Udaj> udaje;
+		ds::amt::ImplicitSequence<Udaj> udaje;
 
 		if (file.is_open())
 		{
@@ -56,7 +56,7 @@ public:
 				else if (row.size() == 5) note = "";
 
 				Udaj udaj(sort_number, code, official_title, medium_title, short_title, note);
-				udaje.push_back(udaj);
+				udaje.insertLast().data_ = udaj;
 
 			}
 		}
