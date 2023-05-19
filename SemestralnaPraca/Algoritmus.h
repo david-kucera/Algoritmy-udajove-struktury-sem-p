@@ -1,5 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppClangTidyClangDiagnosticInvalidUtf8
 #pragma once
 #include <functional>
 #include "Udaj.h"

@@ -1,5 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppClangTidyModernizeUseNodiscard
 #pragma once
 #include <iostream>
 #include <string>

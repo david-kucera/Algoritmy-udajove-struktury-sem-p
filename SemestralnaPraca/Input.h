@@ -1,6 +1,3 @@
-// ReSharper disable CppClangTidyClangDiagnosticInvalidSourceEncoding
-// ReSharper disable CppClangTidyClangDiagnosticInvalidUtf8
-// ReSharper disable CppClangTidyClangDiagnosticSignCompare
 #pragma once
 #include <fstream>
 #include <vector>
