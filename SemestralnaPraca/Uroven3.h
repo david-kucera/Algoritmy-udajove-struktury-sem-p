@@ -79,9 +79,9 @@ public:
 			}
 		}
 
-		for (auto i = table.begin(); i != table.end(); ++i)
+		for (auto& i : table)
 		{
-			delete (*i).data_;
+			delete i.data_;
 		}
 
 		table.clear();
