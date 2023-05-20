@@ -56,7 +56,7 @@ public:
         auto volba = _getch();
         if (volba != 49 && volba != 50) volba = 49;
 
-        std::cout << "Zadaj predikát:";
+        std::cout << "Zadaj predikát: ";
         std::string predikat;
         std::cin >> predikat;
 
@@ -88,7 +88,7 @@ public:
         if (splnujuce_predikat.size() == 0)
         {
             std::cout << "iaden údaj nesplòuje zadanı predikát." << std::endl;
-            std::cout << " Stlaè akıko¾vek kláves pre návrat do menu aplikácie." << std::endl;
+            std::cout << " Stlaè kláves ENTER pre návrat do menu aplikácie." << std::endl;
             auto ch = _getch();
             return;
         }
@@ -112,7 +112,7 @@ public:
         std::cout << "Poèet údajov splòujúcich predikát: " << splnujuce_predikat.size() << std::endl;
 
         std::cout << "Chceš sortova vısledky? Stlaè [1] pre áno" << std::endl;
-        std::cout << "Stlaè akıko¾vek inı kláves pre návrat do menu." << std::endl;
+        std::cout << "Stlaè kláves ENTER pre návrat do menu." << std::endl;
 
         auto sortuj = _getch();
         if (sortuj == 49)

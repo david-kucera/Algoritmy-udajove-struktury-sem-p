@@ -56,7 +56,7 @@ public:
             {
                 if (current_node->sons_->size() != 0)
                 {
-                    std::cout << "Zadaj index syna, na ktorého sa chceš presunú: \n";
+                    std::cout << "Zadaj index syna, na ktorého sa chceš presunú. \n";
                     auto index = _getch();
                     current_node = hierarchy.accessSon(*current_node, index-48);
                 }
@@ -69,10 +69,10 @@ public:
 
                 std::cout << "Typ predikátu: starts_with_str = 1 [string]  contains_str = 2 [string]  has_type = 3 [kraj/okres/obec]" << std::endl;
 
-                std::cout << "Zvo¾ typ predikátu: \n";
+                std::cout << "Zvo¾ typ predikátu. \n";
                 auto typ_predikatu = _getch();
 
-                std::cout << "Zvo¾ predikát: ";
+                std::cout << "Zadaj predikát: ";
                 string predikat;
                 std::cin >> predikat;
 
@@ -136,7 +136,7 @@ public:
                 SetConsoleTextAttribute(h_console, 7); // Defaultná farba písma
 
                 std::cout << "Chceš sortova výsledky? Stlaè [1] pre áno" << std::endl;
-                std::cout << "Stlaè akýko¾vek iný kláves pre návrat do hierarchie." << std::endl;
+                std::cout << "Stlaè kláves ENTER pre návrat do hierarchie." << std::endl;
                 auto sort = _getch();
                 if (sort == 49)
                 {
@@ -150,7 +150,7 @@ public:
                 // Vymazanie hierarchie
                 hierarchy.clear();
 
-                std::cout << " Stlaè akýko¾vek kláves pre návrat do menu aplikácie." << std::endl;
+                std::cout << " Stlaè kláves ENTER pre návrat do menu aplikácie." << std::endl;
                 auto end = _getch();
                 return;
             }

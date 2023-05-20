@@ -41,7 +41,7 @@ public:
 
 		is.clear();
 
-		std::cout << " Stlaè akıko¾vek kláves pre návrat do menu aplikácie." << std::endl;
+		std::cout << " Stlaè kláves ENTER pre návrat do menu aplikácie." << std::endl;
 		auto ch = _getch();
 		return;
 	}
